@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require("path");
 const HTMLPlugin = require('html-webpack-plugin');
 
@@ -16,22 +17,16 @@ const indexTemplate = new HTMLPlugin({
 });
 
 module.exports = {
-  //mode: !process.env.DEBUG ? 'development' : 'production',
   entry: [
-    './src/App.js',
+    'react-hot-loader/patch',
+    './src/App.js'
   ],
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-            }
-          }
-        ]
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
       },
       {
         test: /\.js$/,
@@ -40,17 +35,22 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
+  },
   output: {
-    path: path.resolve(__dirname, outputFolder),
+    path: __dirname + '/dist',
     publicPath: '/',
-    filename: 'App.js',
+    filename: 'bundle.js'
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     indexTemplate,
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, outputFolder),
+    contentBase: './dist',
+    hot: true,
     compress: true,
     port: 9000,
   }
-}
+};
