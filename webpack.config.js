@@ -1,8 +1,10 @@
 const webpack = require('webpack');
 const path = require("path");
 const HTMLPlugin = require('html-webpack-plugin');
-
+const isProduction = !process.env.DEBUG === 'production';
 const outputFolder = "./dist";
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 const indexTemplate = new HTMLPlugin({
   template: './src/index.html',
   //favicon: './src/favicon.ico',
@@ -17,6 +19,7 @@ const indexTemplate = new HTMLPlugin({
 });
 
 module.exports = {
+  mode: !process.env.DEBUG ? 'development' : 'production',
   entry: [
     'react-hot-loader/patch',
     './src/App.js'
@@ -32,7 +35,37 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: ['babel-loader', 'eslint-loader']
-      }
+      },
+      // Styles loader
+      {
+        test: /\.s|css$/,
+        exclude: [/node_modules/, /\.svg$/],
+        use: ExtractTextPlugin.extract({
+          publicPath: '../../',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                modules: true,
+                localIdentName: '[local]'
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
+            }
+          ]
+        })
+      },
     ]
   },
   resolve: {
@@ -46,10 +79,20 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     indexTemplate,
+    new ExtractTextPlugin('assets/styles/styles.css'),
   ],
+  // Source maps
+  devtool: isProduction ? 'source-map' : 'inline-source-map',
+  // Webpack Dev Server configuration
   devServer: {
     contentBase: './dist',
-    hot: true,
+    historyApiFallback: true,
+    stats: {
+      all: false,
+      warnings: true,
+      errors: true,
+      errorDetails: true
+    },
     compress: true,
     port: 9000,
   }
