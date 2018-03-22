@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './App.css'
 
-const title = 'My Minimal React Webpack Babel Setup';
+const title = 'Hello World';
 
-ReactDOM.render(
-  <h1>{title}</h1>,
-  document.getElementById('root')
-);
+const App = () => {
+  return (
+    <h1>{title} TEST
+    </h1>
+  );
+}
 
-module.hot.accept();
+export default App; 

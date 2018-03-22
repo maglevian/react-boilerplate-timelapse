@@ -1,0 +1,7 @@
+{
+  "testRegex": "((\\.|/*.)(test))\\.js?$",
+  "rootDir": "..",
+  "moduleNameMapper": {
+    "\\.(css|jpg|png)$": "<rootDir>/empty-module.js"
+  }
+}
