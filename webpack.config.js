@@ -2,8 +2,10 @@ const webpack = require('webpack');
 const path = require("path");
 const HTMLPlugin = require('html-webpack-plugin');
 const isProduction = !process.env.DEBUG === 'production';
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const outputFolder = "./dist";
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CSSExtractor = new ExtractTextPlugin('App.css');
 
 const indexTemplate = new HTMLPlugin({
   template: './src/index.html',
@@ -22,7 +24,7 @@ module.exports = {
   mode: !process.env.DEBUG ? 'development' : 'production',
   entry: [
     'react-hot-loader/patch',
-    './src/App.js'
+    './src/index.js'
   ],
   module: {
     rules: [
@@ -66,6 +68,11 @@ module.exports = {
           ]
         })
       },
+
+      {
+        test: /\.(jpe?g|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+        use: 'base64-inline-loader',
+      }, // Assets
     ]
   },
   resolve: {
@@ -79,7 +86,8 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     indexTemplate,
-    new ExtractTextPlugin('assets/styles/styles.css'),
+    CSSExtractor,
+    new UglifyJSPlugin(),
   ],
   // Source maps
   devtool: isProduction ? 'source-map' : 'inline-source-map',

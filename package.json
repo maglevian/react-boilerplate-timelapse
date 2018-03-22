@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
     "build": "webpack --config webpack.config.js",
-    "test": "jest"
+    "test": "jest --config ./test/jest.config.json"
   },
   "keywords": [
     "react"
@@ -14,15 +14,16 @@
   "author": "Margaret Huang",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.23.1",
+    "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
-    "babel-jest": "^22.4.1",
     "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-2": "^6.22.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
     "css-loader": "^0.28.10",
     "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.18.2",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-loader": "^2.0.0",
@@ -31,23 +32,26 @@
     "eslint-plugin-react": "^7.7.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.0.6",
+    "ignore-styles": "^5.0.1",
     "jest": "^22.4.2",
+    "jsdom": "^11.6.2",
+    "mocha": "^5.0.4",
     "node-sass": "^4.8.1",
     "postcss-flexbugs-fixes": "^3.3.0",
     "postcss-loader": "^2.1.1",
-    "sass-loader": "^6.0.7",
-    "react-hot-loader": "^3.1.3",
+    "react-hot-loader": "^4.0.0",
     "react-test-renderer": "^16.2.0",
+    "sass-loader": "^6.0.7",
+    "sinon": "^4.4.6",
+    "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.11",
+    "webpack-cli": "^2.0.12",
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "babel-preset-env": "^1.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "FILLME"
   }
 }
