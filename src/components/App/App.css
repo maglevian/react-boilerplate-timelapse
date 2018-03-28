@@ -7,12 +7,10 @@
 }
 .main-content {
     padding: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.1);
-    font-family: Helvetica;
 }
 .main-footer {
     padding: 0.5rem;
-    background-color: rgba(100, 50, 0, 0.5);
+    color: gray;
     font-family: Helvetica;
 }
 h1 {
