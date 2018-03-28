@@ -4,8 +4,9 @@
     "react"
   ],
   "rules": {
+    "un-undef-init": 0,
     "no-unused-vars": 0,
     "max-len": [1, 120, 2, {ignoreComments: true}]
   },
-  "extends": ["airbnb-base"]
+  "extends": ["airbnb-base"],
 }

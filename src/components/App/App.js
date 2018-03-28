@@ -6,22 +6,23 @@ import './App.css';
 const title = 'Hello World';
 
 class App extends React.Component {
-    render() {
-        return (
-            <div className="main-app">
-                <header className="main-header">
-                    <h1>{title}</h1>
-                </header>
-                <main className="main-content">
-                    <Content/>
-                </main>
-                <footer className="main-footer">
-                    <small className="text-muted">
-                    App Version {VERSION}
-                    </small>
-                </footer>
-            </div>
-        );
-    }
-};
-export default App; 
+  render() {
+    return (
+      <div className="main-app">
+        <header className="main-header">
+          <h1>{title}</h1>
+        </header>
+        <main className="main-content">
+          <Content/>
+        </main>
+        <footer className="main-footer">
+          <small className="text-muted">
+            App Version {VERSION}
+          </small>
+        </footer>
+      </div>
+    );
+  }
+}
+
+export default App;
