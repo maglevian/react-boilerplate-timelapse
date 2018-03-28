@@ -6,6 +6,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const outputFolder = "./dist";
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CSSExtractor = new ExtractTextPlugin('App.css');
+const pkg = require('./package.json');
 
 const indexTemplate = new HTMLPlugin({
   template: './src/index.html',
@@ -95,6 +96,9 @@ module.exports = {
     indexTemplate,
     CSSExtractor,
     new UglifyJSPlugin(),
+    new webpack.DefinePlugin({
+       VERSION: JSON.stringify(pkg.version)
+     }),
   ],
   // Source maps
   devtool: isProduction ? 'source-map' : 'inline-source-map',

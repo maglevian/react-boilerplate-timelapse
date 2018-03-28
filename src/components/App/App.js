@@ -17,7 +17,7 @@ class App extends React.Component {
                 </main>
                 <footer className="main-footer">
                     <small className="text-muted">
-                    Footer Text
+                    App Version {VERSION}
                     </small>
                 </footer>
             </div>
